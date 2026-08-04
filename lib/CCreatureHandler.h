@@ -46,7 +46,7 @@ class DLL_LINKAGE CCreature : public Creature, public CBonusSystemNode
 
 	//stats that are not handled by bonus system
 	ui32 fightValue, AIValue, growth, hordeGrowth;
-
+	ui32 warMachineOffset = 1;
 	bool doubleWide = false;
 
 	TResources cost; //cost[res_id] - amount of that resource required to buy creature from dwelling
