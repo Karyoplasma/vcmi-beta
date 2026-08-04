@@ -120,7 +120,6 @@ int32_t CCreature::getHorde() const
 
 int32_t CCreature::getWarMachineOffset() const
 {
-	logGlobal->info("returning warMachineOffset = %d", warMachineOffset);
 	return warMachineOffset;
 }
 
