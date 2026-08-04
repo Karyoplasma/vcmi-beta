@@ -44,7 +44,10 @@ void StackInfoBasicPanel::initializeData(const CStack * stack)
 	icons.push_back(std::make_shared<CAnimImage>(AnimationPath::builtin("TWCRPORT"), stack->creatureId().getNum() + 2, 0, 10, 6));
 	labels.push_back(std::make_shared<CLabel>(10 + 58, 6 + 64, FONT_MEDIUM, ETextAlignment::BOTTOMRIGHT, Colors::WHITE, TextOperations::formatMetric(stack->getCount(), 4)));
 
-	int damageMultiplier = 1;
+	int damageMultiplier = LIBRARY->creatures()->getByIndex(stack->creatureIndex())->getWarMachineOffset();
+	if (damageMultiplier == 0){
+		damageMultiplier = 1
+	}
 	if (stack->hasBonusOfType(BonusType::SIEGE_WEAPON))
 	{
 		static const auto bonusSelector =
@@ -53,7 +56,6 @@ void StackInfoBasicPanel::initializeData(const CStack * stack)
 					Selector::typeSubtype(BonusType::PRIMARY_SKILL, BonusSubtypeID(PrimarySkill::ATTACK)));
 
 		damageMultiplier += stack->valOfBonuses(bonusSelector);
-		damageMultiplier += LIBRARY->creatures()->getByIndex(stack->creatureIndex())->getWarMachineOffset() - 1;
 	}
 
 	auto attack = std::to_string(LIBRARY->creatures()->getByIndex(stack->creatureIndex())->getAttack(stack->isShooter())) + "(" + std::to_string(stack->getAttack(stack->isShooter())) + ")";
