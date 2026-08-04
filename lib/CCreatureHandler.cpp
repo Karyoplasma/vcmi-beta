@@ -411,7 +411,8 @@ void CCreature::serializeJson(JsonSerializeFormat & handler)
 
 	handler.serializeInt("level", level);
 	handler.serializeBool("doubleWide", doubleWide);
-
+	handler.serializeInt("warMachineOffset", warMachineOffset);
+	
 	if(!handler.saving)
 	{
 		if(ammMin > ammMax)
@@ -622,7 +623,13 @@ std::shared_ptr<CCreature> CCreatureHandler::loadFromJson(const std::string & sc
 
 	if(!node["shots"].isNull())
 		cre->addBonus(node["shots"].Integer(), BonusType::SHOTS);
-
+	
+	if (cre->warMachineDamageOffset <= 0)
+	{
+		logMod->error("Mod %s: creature %s has invalid warMachineDamageOffset (%d)! Must be > 0.", scope, identifier, cre->warMachineDamageOffset);
+		cre->warMachineDamageOffset = 1;
+	}
+	
 	loadStackExperience(cre.get(), node["stackExperience"]);
 	loadJsonAnimation(cre.get(), node["graphics"]);
 	loadCreatureJson(cre.get(), node);
