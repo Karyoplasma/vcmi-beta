@@ -118,6 +118,11 @@ int32_t CCreature::getHorde() const
 	return hordeGrowth;
 }
 
+int32_t CCreature::getWarMachineOffset() const
+{
+	return warMachineOffset;
+}
+
 FactionID CCreature::getFactionID() const
 {
 	return FactionID(faction);
