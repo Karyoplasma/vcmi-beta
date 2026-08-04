@@ -46,7 +46,8 @@ void StackInfoBasicPanel::initializeData(const CStack * stack)
 
 	int damageMultiplier = LIBRARY->creatures()->getByIndex(stack->creatureIndex())->getWarMachineOffset();
 	if (damageMultiplier == 0){
-		damageMultiplier = 1
+		logGlobal->info("War machine offset is 0 for creature, falling back to 1");
+		damageMultiplier = 1;
 	}
 	if (stack->hasBonusOfType(BonusType::SIEGE_WEAPON))
 	{
