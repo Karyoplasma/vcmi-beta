@@ -643,11 +643,11 @@ CStackWindow::MainSection::MainSection(CStackWindow * owner, int yOffset, bool s
 			Selector::sourceTypeSel(BonusSource::ARTIFACT).Or(
 			Selector::sourceTypeSel(BonusSource::HERO_BASE_SKILL)).And(
 			Selector::typeSubtype(BonusType::PRIMARY_SKILL, BonusSubtypeID(PrimarySkill::ATTACK)));
-		static const auto damageOffsetSelector = Selector::type(BonusType::SIEGE_WEAPON_DAMAGE_OFFSET);
+		static const auto damageOffsetSelector = Selector::type()(BonusType::SIEGE_WEAPON_DAMAGE_OFFSET);
 		
-	 	int damageOffset = stack->valOfBonuses(damageOffsetSelector);
-		int damageOffsetVal = (damageOffset > 0) ? damageOffset : 1;
-		dmgMultiply += battleStack->valOfBonuses(heroAttackSelector);
+	 	int damageOffsetVal = stack->valOfBonuses(damageOffsetSelector);
+		int damageOffset = (damageOffsetVal > 0) ? damageOffsetVal : 1;
+		dmgMultiply += battleStack->valOfBonuses(heroAttackSelector) + damageOffset;
 	}
 
 	static const std::array<std::string, 8> iconNames = {
