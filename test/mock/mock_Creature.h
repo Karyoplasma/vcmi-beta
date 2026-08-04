@@ -56,6 +56,7 @@ public:
 	MOCK_CONST_METHOD0(getBaseSpellPoints, int32_t());
 	MOCK_CONST_METHOD0(getBaseSpeed, int32_t());
 	MOCK_CONST_METHOD0(getBaseShots, int32_t());
+	MOCK_CONST_METHOD0(getWarMachineOffset, int32_t());
 
 	MOCK_CONST_METHOD1(getCost, int32_t(int32_t));
 	MOCK_CONST_METHOD0(isDoubleWide, bool());
