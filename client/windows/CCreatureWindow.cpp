@@ -639,7 +639,7 @@ CStackWindow::MainSection::MainSection(CStackWindow * owner, int yOffset, bool s
 	int dmgMultiply = 1;
 	if (battleStack != nullptr && battleStack->hasBonusOfType(BonusType::SIEGE_WEAPON))
 	{
-		dmgMultiPly = LIBRARY->creatures()->getByIndex(battleStack->creatureIndex())->getWarMachineOffset();
+		dmgMultiply = LIBRARY->creatures()->getByIndex(battleStack->creatureIndex())->getWarMachineOffset();
 		static const auto bonusSelector =
 			Selector::sourceTypeSel(BonusSource::ARTIFACT).Or(
 			Selector::sourceTypeSel(BonusSource::HERO_BASE_SKILL)).And(
