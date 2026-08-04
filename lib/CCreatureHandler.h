@@ -139,7 +139,7 @@ public:
 	int32_t getLevel() const override;
 	int32_t getGrowth() const override;
 	int32_t getHorde() const override;
-	int32_t getWarMachineOffset() const override;
+	int32_t getWarMachineOffset() const;
 
 	int32_t getBaseAttack() const override;
 	int32_t getBaseDefense() const override;
