@@ -629,12 +629,12 @@ std::shared_ptr<CCreature> CCreatureHandler::loadFromJson(const std::string & sc
 	if(!node["shots"].isNull())
 		cre->addBonus(node["shots"].Integer(), BonusType::SHOTS);
 	
-	if (!node["warmachineoffset"].isNull())
+	if (!node["warMachineOffset"].isNull())
 	{
-		cre->warMachineOffset = node["warmachineoffset"].Integer();
+		cre->warMachineOffset = node["warMachineOffset"].Integer();
 		if (cre->warMachineOffset <= 0)
 		{
-			logMod->error("Mod %s: creature %s has invalid warmachineoffset (%d)! Must be > 0.", scope, identifier, cre->warMachineOffset);
+			logMod->error("Mod %s: creature %s has invalid warMachineOffset (%d)! Must be > 0.", scope, identifier, cre->warMachineOffset);
 			cre->warMachineOffset = 1;
 		}
 	}
