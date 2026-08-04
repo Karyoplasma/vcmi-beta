@@ -646,8 +646,8 @@ CStackWindow::MainSection::MainSection(CStackWindow * owner, int yOffset, bool s
 		static const auto damageOffsetSelector = Selector::type()(BonusType::SIEGE_WEAPON_DAMAGE_OFFSET);
 		
 	 	int damageOffsetVal = stack->valOfBonuses(damageOffsetSelector);
-		int damageOffset = (damageOffsetVal > 0) ? damageOffsetVal : 1;
-		dmgMultiply += battleStack->valOfBonuses(heroAttackSelector) + damageOffset;
+		dmgMultiply = (damageOffsetVal > 0) ? damageOffsetVal : 1;
+		dmgMultiply += battleStack->valOfBonuses(heroAttackSelector);
 	}
 
 	static const std::array<std::string, 8> iconNames = {
