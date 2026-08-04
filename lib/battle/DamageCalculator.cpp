@@ -66,7 +66,7 @@ DamageRange DamageCalculator::getBaseDamageSingle() const
 			Selector::sourceTypeSel(BonusSource::ARTIFACT).Or(
 			Selector::sourceTypeSel(BonusSource::HERO_BASE_SKILL)).And(
 			Selector::typeSubtype(BonusType::PRIMARY_SKILL, BonusSubtypeID(PrimarySkill::ATTACK)));
-		static const auto damageOffsetSelector = Selector::type(BonusType::SIEGE_WEAPON_DAMAGE_OFFSET);
+		static const auto damageOffsetSelector = Selector::type()(BonusType::SIEGE_WEAPON_DAMAGE_OFFSET);
 		
 		//minDmg and maxDmg of a Ballista are multiplied by hero attack + max(damageOffset, 1)
 		int heroAttackSkill = info.attacker->valOfBonuses(heroAttackSelector);
