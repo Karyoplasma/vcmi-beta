@@ -47,7 +47,7 @@ void StackInfoBasicPanel::initializeData(const CStack * stack)
 	int damageMultiplier = 1;
 	if (stack->hasBonusOfType(BonusType::SIEGE_WEAPON))
 	{
-		damageMultiplier = stack->getWarMachineOffset();
+		damageMultiplier = LIBRARY->creatures()->getByIndex(stack->creatureIndex())->getWarMachineOffset();
 		logGlobal->info("damageMultiplier = %d", damageMultiplier);
 		static const auto bonusSelector =
 			Selector::sourceTypeSel(BonusSource::ARTIFACT).Or(
