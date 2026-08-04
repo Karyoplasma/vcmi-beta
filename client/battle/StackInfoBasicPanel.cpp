@@ -57,6 +57,10 @@ void StackInfoBasicPanel::initializeData(const CStack * stack)
 		damageMultiplier += stack->valOfBonuses(bonusSelector);
 	}
 
+	auto minDmgVal = stack->getMinDamage(stack->isShooter());
+	auto maxDmgVal = stack->getMaxDamage(stack->isShooter());
+	logGlobal->info("Multiplier: %d | Base Min: %d | Base Max: %d", damageMultiplier, minDmgVal, maxDmgVal);
+	
 	auto attack = std::to_string(LIBRARY->creatures()->getByIndex(stack->creatureIndex())->getAttack(stack->isShooter())) + "(" + std::to_string(stack->getAttack(stack->isShooter())) + ")";
 	auto defense = std::to_string(LIBRARY->creatures()->getByIndex(stack->creatureIndex())->getDefense(stack->isShooter())) + "(" + std::to_string(stack->getDefense(stack->isShooter())) + ")";
 	auto damage = std::to_string(damageMultiplier * stack->getMinDamage(stack->isShooter())) + "-" + std::to_string(damageMultiplier * stack->getMaxDamage(stack->isShooter()));
