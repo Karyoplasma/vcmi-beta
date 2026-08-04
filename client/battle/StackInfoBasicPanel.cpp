@@ -44,18 +44,18 @@ void StackInfoBasicPanel::initializeData(const CStack * stack)
 	icons.push_back(std::make_shared<CAnimImage>(AnimationPath::builtin("TWCRPORT"), stack->creatureId().getNum() + 2, 0, 10, 6));
 	labels.push_back(std::make_shared<CLabel>(10 + 58, 6 + 64, FONT_MEDIUM, ETextAlignment::BOTTOMRIGHT, Colors::WHITE, TextOperations::formatMetric(stack->getCount(), 4)));
 
-	int damageMultiplier = LIBRARY->creatures()->getByIndex(stack->creatureIndex())->getWarMachineOffset();
-	if (damageMultiplier == 0){
-		logGlobal->info("War machine offset is 0 for creature, falling back to 1");
-		damageMultiplier = 1;
-	}
+	int damageMultiplier = 1;
 	if (stack->hasBonusOfType(BonusType::SIEGE_WEAPON))
 	{
+		damageMultiplier = LIBRARY->creatures()->getByIndex(stack->creatureIndex())->getWarMachineOffset();
+		if (damageMultiplier < 2){
+			logGlobal->info("War machine offset is less than 2 for Siege Weapon.");
+		}
 		static const auto bonusSelector =
 			Selector::sourceTypeSel(BonusSource::ARTIFACT).Or(
 															  Selector::sourceTypeSel(BonusSource::HERO_BASE_SKILL)).And(
 					Selector::typeSubtype(BonusType::PRIMARY_SKILL, BonusSubtypeID(PrimarySkill::ATTACK)));
-
+		
 		damageMultiplier += stack->valOfBonuses(bonusSelector);
 	}
 
