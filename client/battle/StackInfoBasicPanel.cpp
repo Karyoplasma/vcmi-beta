@@ -53,6 +53,7 @@ void StackInfoBasicPanel::initializeData(const CStack * stack)
 					Selector::typeSubtype(BonusType::PRIMARY_SKILL, BonusSubtypeID(PrimarySkill::ATTACK)));
 
 		damageMultiplier += stack->valOfBonuses(bonusSelector);
+		damageMultiplier += LIBRARY->creatures()->getByIndex(stack->creatureIndex())->getWarMachineOffset() - 1;
 	}
 
 	auto attack = std::to_string(LIBRARY->creatures()->getByIndex(stack->creatureIndex())->getAttack(stack->isShooter())) + "(" + std::to_string(stack->getAttack(stack->isShooter())) + ")";
