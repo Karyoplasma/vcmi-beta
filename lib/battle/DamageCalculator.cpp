@@ -69,9 +69,13 @@ DamageRange DamageCalculator::getBaseDamageSingle() const
 
 		//minDmg and maxDmg of a Ballista are multiplied by hero attack + warMachineOffset
 		int heroAttackSkill = info.attacker->valOfBonuses(bonusSelector);
-		int warMachineOffset = info.attacker->creatureId().toEntity(LIBRARY)->getWarMachineOffset();
-		minDmg *= heroAttackSkill + warMachineOffset;
-		maxDmg *= heroAttackSkill + warMachineOffset;
+		int damageOffset = 1;
+		if (auto *creature = dynamic_cast<const CCreature*>(info.attacker->creatureId().toEntity(LIBRARY)))
+		{
+			damageOffset = creature->getWarMachineOffset();
+		}
+		minDmg *= heroAttackSkill + damageOffset;
+		maxDmg *= heroAttackSkill + damageOffset;
 	}
 	return { minDmg, maxDmg };
 }
