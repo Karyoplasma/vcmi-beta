@@ -645,7 +645,7 @@ CStackWindow::MainSection::MainSection(CStackWindow * owner, int yOffset, bool s
 			Selector::typeSubtype(BonusType::PRIMARY_SKILL, BonusSubtypeID(PrimarySkill::ATTACK)));
 		static const auto damageOffsetSelector = Selector::type()(BonusType::SIEGE_WEAPON_DAMAGE_OFFSET);
 		
-	 	int damageOffsetVal = stack->valOfBonuses(damageOffsetSelector);
+	 	int damageOffsetVal = battleStack->valOfBonuses(damageOffsetSelector);
 		dmgMultiply = (damageOffsetVal > 0) ? damageOffsetVal : 1;
 		dmgMultiply += battleStack->valOfBonuses(heroAttackSelector);
 	}
