@@ -1344,7 +1344,7 @@ TEST_P(SecondarySkillSpecialty, scalesSkillBonus)
 
 	ASSERT_GT(withoutSpec, 0) << c.name << ": skill provides no measurable bonus";
 	// mysticism specialty has a hidden +1 flat mana regeneration
-	if (c.bonusType == BonusType::MANA_REGENERATION)
+	if (c.skillIdx == 8)
 	{
 		EXPECT_EQ(withSpec, applyPercentDown(withoutSpec, 5 * c.heroLevel) + 1) << c.name;
 	} else {
