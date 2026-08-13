@@ -67,10 +67,11 @@ DamageRange DamageCalculator::getBaseDamageSingle() const
 			Selector::sourceTypeSel(BonusSource::HERO_BASE_SKILL)).And(
 			Selector::typeSubtype(BonusType::PRIMARY_SKILL, BonusSubtypeID(PrimarySkill::ATTACK)));
 
-		//minDmg and maxDmg of a Ballista are multiplied by hero attack + 1
+		//minDmg and maxDmg of a Ballista are multiplied by hero attack + warMachineOffset
 		int heroAttackSkill = info.attacker->valOfBonuses(bonusSelector);
-		minDmg *= heroAttackSkill + 1;
-		maxDmg *= heroAttackSkill + 1;
+		int damageOffset = info.attacker->creatureId().toEntity(LIBRARY)->getWarMachineOffset();
+		minDmg *= heroAttackSkill + damageOffset;
+		maxDmg *= heroAttackSkill + damageOffset;
 	}
 	return { minDmg, maxDmg };
 }

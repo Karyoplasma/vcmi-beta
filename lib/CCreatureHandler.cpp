@@ -118,6 +118,11 @@ int32_t CCreature::getHorde() const
 	return hordeGrowth;
 }
 
+int32_t CCreature::getWarMachineOffset() const
+{
+	return warMachineOffset;
+}
+
 FactionID CCreature::getFactionID() const
 {
 	return FactionID(faction);
@@ -411,7 +416,8 @@ void CCreature::serializeJson(JsonSerializeFormat & handler)
 
 	handler.serializeInt("level", level);
 	handler.serializeBool("doubleWide", doubleWide);
-
+	handler.serializeInt("warMachineOffset", warMachineOffset);
+	
 	if(!handler.saving)
 	{
 		if(ammMin > ammMax)
@@ -622,7 +628,21 @@ std::shared_ptr<CCreature> CCreatureHandler::loadFromJson(const std::string & sc
 
 	if(!node["shots"].isNull())
 		cre->addBonus(node["shots"].Integer(), BonusType::SHOTS);
-
+	
+	if (!node["warMachineOffset"].isNull())
+	{
+		cre->warMachineOffset = node["warMachineOffset"].Integer();
+		if (cre->warMachineOffset <= 0)
+		{
+			logMod->error("Mod %s: creature %s has invalid warMachineOffset (%d)! Must be > 0.", scope, identifier, cre->warMachineOffset);
+			cre->warMachineOffset = 1;
+		}
+	}
+	else
+	{
+		cre->warMachineOffset = 1;
+	}
+	
 	loadStackExperience(cre.get(), node["stackExperience"]);
 	loadJsonAnimation(cre.get(), node["graphics"]);
 	loadCreatureJson(cre.get(), node);

@@ -126,6 +126,7 @@
 			}
 		},
 		"shots" :     { "type" : "number" },
+		"warMachineOffset" :   { "type" : "number" },
 		"spellPoints" : {
 			"type" : "number",
 			"description" : "Spell points this creature has (usually equal to number of casts)"

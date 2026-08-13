@@ -45,8 +45,7 @@ class DLL_LINKAGE CCreature : public Creature, public CBonusSystemNode
 	ui8 level = 0; // 0 - unknown; 1-7 for "usual" creatures
 
 	//stats that are not handled by bonus system
-	ui32 fightValue, AIValue, growth, hordeGrowth;
-
+	ui32 fightValue, AIValue, growth, hordeGrowth, warMachineOffset;
 	bool doubleWide = false;
 
 	TResources cost; //cost[res_id] - amount of that resource required to buy creature from dwelling
@@ -139,6 +138,7 @@ public:
 	int32_t getLevel() const override;
 	int32_t getGrowth() const override;
 	int32_t getHorde() const override;
+	int32_t getWarMachineOffset() const override;
 
 	int32_t getBaseAttack() const override;
 	int32_t getBaseDefense() const override;

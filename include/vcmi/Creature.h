@@ -54,6 +54,7 @@ public:
 	virtual int32_t getLevel() const = 0;
 	virtual int32_t getGrowth() const = 0;
 	virtual int32_t getHorde() const = 0;
+	virtual int32_t getWarMachineOffset() const = 0;
 
 	virtual int32_t getBaseAttack() const = 0;
 	virtual int32_t getBaseDefense() const = 0;

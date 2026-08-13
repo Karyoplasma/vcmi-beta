@@ -47,11 +47,12 @@ void StackInfoBasicPanel::initializeData(const CStack * stack)
 	int damageMultiplier = 1;
 	if (stack->hasBonusOfType(BonusType::SIEGE_WEAPON))
 	{
+		damageMultiplier = LIBRARY->creatures()->getByIndex(stack->creatureIndex())->getWarMachineOffset();
 		static const auto bonusSelector =
 			Selector::sourceTypeSel(BonusSource::ARTIFACT).Or(
 															  Selector::sourceTypeSel(BonusSource::HERO_BASE_SKILL)).And(
 					Selector::typeSubtype(BonusType::PRIMARY_SKILL, BonusSubtypeID(PrimarySkill::ATTACK)));
-
+		
 		damageMultiplier += stack->valOfBonuses(bonusSelector);
 	}
 
