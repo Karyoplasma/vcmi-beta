@@ -18,8 +18,11 @@ end
 --- Overriding this is how a mod changes the formula; what is granted below is only the difference.
 function Script:getDamageRange(unit, minDamage, maxDamage)
 	local heroAttack = self:getHeroAttack(unit)
-
-	return minDamage * (heroAttack + 1), maxDamage * (heroAttack + 1)
+	local offset = self.offset or 1
+	if offset < 1 then
+		offset = 1
+	end
+	return minDamage * (heroAttack + offset), maxDamage * (heroAttack + offset)
 end
 
 function Script:grantDamage(server, battle, unit, subtype, value)
