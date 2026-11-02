@@ -824,7 +824,7 @@ void PlayerMessageProcessor::cheatTeleport(PlayerColor player, const CGHeroInsta
 	if(!destTile.isClear(&heroTile))
 		return;
 
-	gameHandler->moveHero(hero->id, pos, EMovementMode::DIMENSION_DOOR);
+	gameHandler->moveHero(hero->id, hero->convertFromVisitablePos(pos), EMovementMode::DIMENSION_DOOR);
 }
 
 void PlayerMessageProcessor::cheatGiveGrail(PlayerColor player, const CGHeroInstance * hero)
