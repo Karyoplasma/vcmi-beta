@@ -214,9 +214,11 @@ std::vector<std::shared_ptr<Bonus>> CHeroHandler::createSecondarySkillSpecialty(
 		bonus->val = 1;
 		bonus->valType = BonusValueType::ADDITIVE_VALUE;
 		bonus->source = BonusSource::HERO_SPECIAL;
-		auto limiter = std::make_shared<HasAnotherBonusLimiter>();
-		limiter->bonusSourceType = BonusSource::SECONDARY_SKILL;
-		limiter->bonusSourceID = skill->getId();
+		auto limiter = std::make_shared<HasAnotherBonusLimiter>(BonusType::NONE);
+		limiter->source = BonusSource::SECONDARY_SKILL;
+		limiter->isSourceRelevant = true;
+		limiter->sid = skill->getId();
+		limiter->isSourceIDRelevant = true;
 		bonus->addLimiter(limiter);
 		result.push_back(bonus);
 	}
