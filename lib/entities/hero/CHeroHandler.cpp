@@ -206,8 +206,8 @@ std::vector<std::shared_ptr<Bonus>> CHeroHandler::createSecondarySkillSpecialty(
 		result.push_back(bonus);
 	}
 
-	// Mysticism specialist gets an additional flat +1 mana regeneration
-	if ( skill->getJsonKey() == "core:mysticism")
+	// Mysticism specialists get an additional flat +1 mana regeneration (H3 quirk)
+	if (skill->getJsonKey() == "core:mysticism")
 	{
 		auto bonus = std::make_shared<Bonus>();
 		bonus->type = BonusType::MANA_REGENERATION;
