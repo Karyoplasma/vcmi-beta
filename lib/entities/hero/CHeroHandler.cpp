@@ -206,6 +206,21 @@ std::vector<std::shared_ptr<Bonus>> CHeroHandler::createSecondarySkillSpecialty(
 		result.push_back(bonus);
 	}
 
+	// Mysticism specialist gets an additional flat +1 mana regeneration
+	if ( skill->getJsonKey() == "core:mysticism")
+	{
+		auto bonus = std::make_shared<Bonus>();
+		bonus->type = BonusType::MANA_REGENERATION;
+		bonus->val = 1;
+		bonus->valType = BonusValueType::ADDITIVE_VALUE;
+		bonus->source = BonusSource::HERO_SPECIAL;
+		auto limiter = std::make_shared<HasAnotherBonusLimiter>();
+		limiter->bonusSourceType = BonusSource::SECONDARY_SKILL;
+		limiter->bonusSourceID = skill->getId();
+		bonus->addLimiter(limiter);
+		result.push_back(bonus);
+	}
+
 	return result;
 }
 
